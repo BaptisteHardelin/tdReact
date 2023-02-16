@@ -16,4 +16,8 @@ const deleteQuote = (id, quotesArr, setQuotesArr, setCanDelete) => {
   }
 };
 
-export { quotes, deleteQuote };
+const addQuote = (text, author) => {
+  return quotes.push({ id: quotes.length + 1, text, author });
+};
+
+export { quotes, deleteQuote, addQuote };
