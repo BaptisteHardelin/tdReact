@@ -1,5 +1,5 @@
-import { Quote } from "./quote/AllQuote";
-import { quotes } from "./quote/quotes";
+import AllQuotes from "./quote/AllQuotes";
+import OneQuote from "./quote/OneQuote";
 
 const App = () => {
   return (
@@ -7,11 +7,13 @@ const App = () => {
       <h1>Mes Citations!</h1>
 
       <div>
-        {quotes.map((quote) => (
-          <Quote {...quote} key={quote.id} />
-        ))}
+        <span>AllQuotes</span>
+        <AllQuotes />
       </div>
-      <Quote text="Elementary, my dear Watson" author="Sherlock Holmes" />
+      <div>
+        <span>OneQuote</span>
+        <OneQuote />
+      </div>
     </div>
   );
 };
