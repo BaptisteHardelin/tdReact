@@ -17,7 +17,7 @@ const OneQuote = () => {
   };
 
   const handleDelte = (id) => {
-    deleteQuote(id, quotesArr, setQuotesArr);
+    deleteQuote(id, quotesArr, setQuotesArr, setCanDelete);
   };
 
   return (
