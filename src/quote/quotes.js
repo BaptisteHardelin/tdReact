@@ -1,3 +1,4 @@
+import { Quote } from "./Quote";
 let quotes = [
   { id: 1, text: "Elementary, my dear Watson ", author: "Sherlock Holmes" },
   { id: 2, text: "Big Brother is watching you", author: "Georges Orwell" },
@@ -20,4 +21,20 @@ const addQuote = (text, author) => {
   return quotes.push({ id: quotes.length + 1, text, author });
 };
 
-export { quotes, deleteQuote, addQuote };
+const searchAuthorQuote = (author) => {
+  return quotes.filter((quote) =>
+    quote.author.toLowerCase().includes(author.toLowerCase())
+  );
+};
+
+const listQuote = () => {
+  quotes.map((quote) => {
+    if (searchAuthorQuote(quote.author)) {
+      <Quote text={quote.text} author={quote.author} key={quote.id} />;
+    } else {
+      <Quote {...quote} />;
+    }
+  });
+};
+
+export { quotes, deleteQuote, addQuote, searchAuthorQuote, listQuote };
