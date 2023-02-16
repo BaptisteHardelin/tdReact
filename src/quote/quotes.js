@@ -5,4 +5,15 @@ let quotes = [
   { id: 4, text: "You talkinâ€™ to me?", author: "Travis Bickle" },
 ];
 
-export { quotes };
+const deleteQuote = (id, quotesArr, setQuotesArr, setCanDelete) => {
+  // Tant qu'on plus d'une citation alors on peut les supprimer
+  if (quotesArr.length > 1) {
+    const newQuotes = quotesArr.filter((quote) => quote.id !== id);
+    setQuotesArr(newQuotes);
+  } else {
+    // Empêche l'apprition d'une erreur dans la console comme quoi setCanDelete n'est pas une fonction
+    if (setCanDelete) setCanDelete(false);
+  }
+};
+
+export { quotes, deleteQuote };

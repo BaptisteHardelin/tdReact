@@ -1,27 +1,23 @@
 import { useState } from "react";
 import { Quote } from "./Quote";
-import { quotes } from "./quotes";
+import { quotes, deleteQuote } from "./quotes";
 
 const OneQuote = () => {
   const [currIndex, setCurrIndex] = useState(0);
-  const currentQuote = quotes[currIndex];
+  const [quotesArr, setQuotesArr] = useState(quotes);
+  const [canDelete, setCanDelete] = useState(true);
+  const currentQuote = quotesArr[currIndex];
 
   const handleNext = () => {
-    // On passe à la citation suivante
-    setCurrIndex(currIndex + 1);
-
-    // Si currIndex est équivalant au nombre de citation alors on revien au début du tableau
-    if (currIndex === quotes.length - 1) {
-      setCurrIndex(0);
-    }
+    setCurrIndex((currIndex + 1) % quotesArr.length);
   };
 
   const handlePrev = () => {
-    if (currIndex === 0) {
-      setCurrIndex(quotes.length - 1);
-    } else {
-      setCurrIndex(currIndex - 1);
-    }
+    setCurrIndex((currIndex + quotesArr.length - 1) % quotesArr.length);
+  };
+
+  const handleDelte = (id) => {
+    deleteQuote(id, quotesArr, setQuotesArr);
   };
 
   return (
@@ -30,6 +26,9 @@ const OneQuote = () => {
 
       <button onClick={() => handleNext()}>Suivant</button>
       <button onClick={() => handlePrev()}>Précédent</button>
+      {canDelete && (
+        <button onClick={() => handleDelte(currentQuote.id)}>Supprimer</button>
+      )}
     </div>
   );
 };
